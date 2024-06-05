@@ -74,7 +74,7 @@ export async function POST(req: Request) {
             }
         })
     }
-
+    console.log("0kkkkkkkkkkkkkkkkkkkkkkkkkkkk",newUser)
     return NextResponse.json({message:'OK',user:newUser})
   }
 
