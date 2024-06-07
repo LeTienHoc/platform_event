@@ -1,6 +1,6 @@
 "use server"
 
-import { CreateEventParams, UpdateEventParams, GetRelatedEventsByCategoryParams, GetAllEventsParams, DeleteEventParams } from "@/types"
+import { CreateEventParams, UpdateEventParams, GetRelatedEventsByCategoryParams, GetAllEventsParams, DeleteEventParams, GetEventsByUserParams } from "@/types"
 import { handleError } from "../utils"
 import { connectToDatabase } from "../database"
 import User from "../database/models/user.model"
@@ -124,11 +124,32 @@ export async function getAllEvents({ query, limit = 6, page, category }: GetAllE
 // DELETE
 export async function deleteEvent({ eventId, path }: DeleteEventParams) {
     try {
-      await connectToDatabase()
-  
-      const deletedEvent = await Event.findByIdAndDelete(eventId)
-      if (deletedEvent) revalidatePath(path)
+        await connectToDatabase()
+
+        const deletedEvent = await Event.findByIdAndDelete(eventId)
+        if (deletedEvent) revalidatePath(path)
     } catch (error) {
-      handleError(error)
+        handleError(error)
     }
-  }
+}
+
+export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUserParams) {
+    try {
+        await connectToDatabase()
+
+        const conditions = { organizer: userId }
+        const skipAmount = (page - 1) * limit
+
+        const eventsQuery = Event.find(conditions)
+            .sort({ createdAt: 'desc' })
+            .skip(skipAmount)
+            .limit(limit)
+
+        const events = await populateEvent(eventsQuery)
+        const eventsCount = await Event.countDocuments(conditions)
+
+        return { data: JSON.parse(JSON.stringify(events)), totalPages: Math.ceil(eventsCount / limit) }
+    } catch (error) {
+        handleError(error)
+    }
+}

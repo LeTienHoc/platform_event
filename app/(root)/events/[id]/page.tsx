@@ -1,9 +1,9 @@
 
 import CheckoutButton from '@/components/shared/CheckoutButton';
+import Collection from '@/components/shared/Collection';
 import { getEventById, getRelatedEventsByCategory } from '@/lib/actions/event.actions';
 import { formatDateTime } from '@/lib/utils';
 import { SearchParamProps } from '@/types'
-import { Collection } from 'mongoose';
 import Image from 'next/image';
 
 const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) => {
@@ -73,25 +73,25 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
 
           <div className="flex flex-col gap-2">
             <p className="p-bold-20 text-grey-600">Mô tả:</p>
-            <p className="text-[16px] font-medium leading-[24px] lg:text-[18px] font-normal leading-[28px] tracking-[2%]">{event.description}</p>
-            <p className="text-[16px] font-medium leading-[24px] lg:text-[18px] font-normal leading-[28px] tracking-[2%] truncate text-primary-500 underline">{event.url}</p>
+            <p className="text-[16px] font-medium leading-[24px] lg:text-[18px] tracking-[2%]">{event.description}</p>
+            <p className="text-[16px] font-medium leading-[24px] lg:text-[18px] tracking-[2%] truncate text-primary-500 underline">{event.url}</p>
           </div>
         </div>
       </div>
     </section>
-    {/* <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-      <h2 className="h2-bold">Related Events</h2>
+    <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+      <h2 className="h2-bold">Liên Quan</h2>
 
       <Collection 
           data={relatedEvents?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Come back later"
+          emptyTitle="Không tìm thấy sự kiện"
+          emptyStateSubtext="Mời bạn quay trở lại sau"
           collectionType="All_Events"
           limit={3}
           page={searchParams.page as string}
           totalPages={relatedEvents?.totalPages}
         />
-    </section> */}
+    </section>
     </>
   )
 }
