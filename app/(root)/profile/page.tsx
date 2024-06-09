@@ -4,7 +4,7 @@ import { getEventsByUser } from '@/lib/actions/event.actions'
 import { getOrdersByUser } from '@/lib/actions/order.action'
 import { IOrder } from '@/lib/database/models/order.model'
 import { SearchParamProps } from '@/types'
-import { auth } from '@clerk/nextjs/server'
+import { auth } from '@clerk/nextjs'
 import Link from 'next/link'
 import React from 'react'
 
@@ -28,7 +28,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           <h3 className='h3-bold text-center sm:text-left'>My Tickets</h3>
           <Button asChild size="lg" className="button hidden sm:flex">
             <Link href="/#events">
-              Explore More Events
+              Khám phá Event
             </Link>
           </Button>
         </div>
@@ -37,8 +37,8 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       <section className="wrapper my-8">
         <Collection 
           data={orderedEvents}
-          emptyTitle="No event tickets purchased yet"
-          emptyStateSubtext="No worries - plenty of exciting events to explore!"
+          emptyTitle="Không tìm thấy sự kiện"
+          emptyStateSubtext="Đừng lo lắng - còn rất nhiều sự kiện thú vị để khám phá!"
           collectionType="My_Tickets"
           limit={3}
           page={ordersPage}
@@ -50,10 +50,10 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       {/* Events Organized */}
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <div className="wrapper flex items-center justify-center sm:justify-between">
-          <h3 className='h3-bold text-center sm:text-left'>Events Organized</h3>
+          <h3 className='h3-bold text-center sm:text-left'>Sự kiện đã tổ chức</h3>
           <Button asChild size="lg" className="button hidden sm:flex">
             <Link href="/events/create">
-              Create New Event
+              Tạo mới Sự kiện
             </Link>
           </Button>
         </div>
@@ -62,8 +62,8 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       <section className="wrapper my-8">
         <Collection 
           data={organizedEvents?.data}
-          emptyTitle="No events have been created yet"
-          emptyStateSubtext="Go create some now"
+          emptyTitle="Chưa có sự kiện nào được tạo"
+          emptyStateSubtext="Hãy tạo sự kiện ngay bây giờ"
           collectionType="Events_Organized"
           limit={3}
           page={eventsPage}

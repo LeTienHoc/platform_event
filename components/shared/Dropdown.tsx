@@ -70,7 +70,7 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
                         </DialogHeader>
                         <DialogFooter>
                             <Button type="submit" onClick={() => handleAddCategory()} className="pr-2">Thêm</Button>
-                            <DialogClose>Close</DialogClose>
+                            <DialogClose className="border-solid">Thoát</DialogClose>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>

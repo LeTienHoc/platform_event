@@ -34,7 +34,7 @@ const Header = () => {
                 <SignedOut>
                     <Button variant='destructive' asChild className='rounded-full' size={'lg'}>
                         <Link href="/sign-in">
-                            Login
+                            Đăng nhập
                         </Link>
                     </Button>
                 </SignedOut>

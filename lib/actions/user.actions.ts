@@ -27,7 +27,7 @@ export async function getUserById(userId: string) {
   
       const user = await User.findById(userId)
   
-      if (!user) throw new Error('User not found')
+      if (!user) throw new Error('Không tìm thấy User')
       return JSON.parse(JSON.stringify(user))
     } catch (error) {
       handleError(error)

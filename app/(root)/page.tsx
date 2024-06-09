@@ -27,14 +27,14 @@ export default async function Home({ searchParams }: SearchParamProps) {
         md:gird-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">
             <h1 className="h1-bold">
-              Host, Connect, Celebrate: Your Events, Our Platform!
+            Tổ chức, Kết nối, Kỷ niệm: Sự kiện của bạn, Nền tảng của chúng tôi!
             </h1>
             <p className="p-regular-20 md:p-regular-24">
-              Book and learn helpful tips from 3,168+ mentors in world-class companies with our global community.
+            Đăng ký và tìm hiểu những lời khuyên hữu ích từ hơn 3.168 cố vấn ở các công ty đẳng cấp thế giới với cộng đồng toàn cầu của chúng tôi.
             </p>
             <Button size="lg" className="button w-full sm:w-fit">
               <Link href="#event">
-                Explore Now
+                Khám phá ngay
               </Link>
             </Button>
           </div>
@@ -53,7 +53,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
       <section id="events" className="wrapper my-8 flex flex-col gap-8
       md:gap-12">
         <h2 className="h2-bold">
-          Trust by <br /> Thousands of Events
+          Tin tưởng bởi <br /> Hàng ngàn sự kiện
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <Search />
@@ -62,8 +62,8 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
         <Collection
           data={events?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Come back later"
+          emptyTitle="Không tìm thấy sự kiện"
+          emptyStateSubtext="Quay trở lại sau"
           collectionType="All_Events"
           limit={6}
           page={page}
