@@ -7,6 +7,7 @@ export async function POST(request: Request) {
 
   const sig = request.headers.get('stripe-signature') as string
   const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!
+  console.log("endpointSecret",endpointSecret)
 
   let event
 
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
       stripeId: id,
       eventId: metadata?.eventId || '',
       buyerId: metadata?.buyerId || '',
-      totalAmount: amount_total ? (amount_total / 100).toString() : '0',
+      totalAmount: amount_total===0 ? '0' : (amount_total! / 100).toString(),
       createdAt: new Date(),
     }
     console.log(eventType)
